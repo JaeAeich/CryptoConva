@@ -1,17 +1,22 @@
 import { React, useState, useEffect } from "react";
+import Ans from "./Ans";
 
 function Form() {
 	const url = "https://api.coingecko.com/api/v3/exchange_rates";
 	const [data, setData] = useState(null);
 	const [coin, setCoin] = useState("Select Coin");
+	const [coin2, setCoin2] = useState("Select Coin");
 	const [p1, setP1] = useState(1);
 	const [p2, setP2] = useState(1);
+	const [ans, setAns] = useState(null);
+	const [amt, setAmt] = useState(null);
 
 	useEffect(() => {
 		fetch(url)
 			.then((response) => response.json())
 			.then((data) => setData(Object.entries(data.rates)));
 	}, []);
+
 	const handleCoinSelect1 = (e) => {
 		e.preventDefault();
 		setCoin(e.target.innerText);
@@ -23,11 +28,24 @@ function Form() {
 	};
 
 	const handleCoinSelect2 = (e) => {
+		setCoin2(e.target.value);
 		data.forEach((arr) => {
 			if (arr[1].name === e.target.value) {
 				setP2(arr[1].value);
 			}
 		});
+	};
+
+	const handleChangeInput = (e) => {
+		setAmt(e.target.value);
+		setAns(null);
+		console.log(amt);
+	};
+
+	const handleClickFinal = (e) => {
+		e.preventDefault();
+		const btcInAmt = (1 / p1) * amt;
+		setAns(btcInAmt * p2);
 	};
 
 	return (
@@ -41,7 +59,8 @@ function Form() {
 					</div>
 					<div className="input-group mb-3">
 						<input
-							type="text"
+							onChange={handleChangeInput}
+							type="number"
 							className="form-control"
 							aria-label="Text input with dropdown button"
 						/>
@@ -63,7 +82,7 @@ function Form() {
 										<li
 											className="my-3 mx-3"
 											style={{ cursor: "pointer" }}
-											onClick={(e)=>handleCoinSelect1(e,value.value)}
+											onClick={(e) => handleCoinSelect1(e, value.value)}
 										>
 											{value.name}
 										</li>
@@ -90,10 +109,15 @@ function Form() {
 							})}
 						</select>
 					</div>
-					<button type="submit" className="btn btn-primary">
+					<button
+						onClick={handleClickFinal}
+						type="submit"
+						className="btn btn-primary"
+					>
 						Convert
 					</button>
 				</fieldset>
+				{ans?<Ans amt={amt} coin={coin} coin2={coin2} ans={ans} />:<></>}
 			</form>
 		)
 	);

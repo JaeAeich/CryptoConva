@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/CryptoConvan/static/css/main.073c9b0a.css",
+    "main.js": "/CryptoConvan/static/js/main.7cfbcddb.js",
+    "index.html": "/CryptoConvan/index.html",
+    "main.073c9b0a.css.map": "/CryptoConvan/static/css/main.073c9b0a.css.map",
+    "main.7cfbcddb.js.map": "/CryptoConvan/static/js/main.7cfbcddb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.7cfbcddb.js"
+  ]
+}

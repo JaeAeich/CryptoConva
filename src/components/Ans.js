@@ -2,6 +2,7 @@ import React from "react";
 
 function Ans(props) {
 	return (
+		props.ans &&
 		<figure className="text-center container">
 			<blockquote className="blockquote my-3">
 				<p>

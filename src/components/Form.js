@@ -5,7 +5,7 @@ function Form() {
 	const url = "https://api.coingecko.com/api/v3/exchange_rates";
 	const [data, setData] = useState(null);
 	const [coin, setCoin] = useState("Select Coin");
-	const [coin2, setCoin2] = useState("Select Coin");
+	const [coin2, setCoin2] = useState("Bitcoin");
 	const [p1, setP1] = useState(1);
 	const [p2, setP2] = useState(1);
 	const [ans, setAns] = useState(null);
@@ -117,7 +117,7 @@ function Form() {
 						Convert
 					</button>
 				</fieldset>
-				{ans?<Ans amt={amt} coin={coin} coin2={coin2} ans={ans} />:<></>}
+				{ans ? <Ans amt={amt} coin={coin} coin2={coin2} ans={ans} /> : <></>}
 			</form>
 		)
 	);

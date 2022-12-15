@@ -5,6 +5,7 @@ function Credit() {
 	return (
 		<div className="card container my-3" style={{ width: "18rem" }}>
 			<div className="card-body">
+				<img />
 				<img style={{ width: "100%" }} className="my-3" src="pic.png"></img>
 				<h5 className="card-title">Javed Habib</h5>
 				<p className="card-text">
